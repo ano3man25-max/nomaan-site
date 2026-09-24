@@ -47,11 +47,11 @@ section.alt { background: var(--surface); border-top: 1px solid var(--line); bor
 .hero h1 { font-size: 50px; line-height: 1.25; margin: 14px 0 18px; }
 .hero p { font-size: 18px; margin: 0 0 22px; }
 .hero .actions { display: flex; gap: 14px; flex-wrap: wrap; }
-.hero .art { min-height: 300px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 28px 30px; }
-.hero .art img.mini { height: 64px; width: auto; align-self: flex-start; }
+.hero .art { min-height: 300px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 12px; padding: 28px 30px; }
+.hero .art img.mini { height: 64px; width: auto; }
 .hero .art .assoc { font-size: 14px; color: var(--muted); }
 .hero .art .today { font-family: var(--serif); font-size: 22px; color: var(--primary); font-weight: 700; }
-.hero .art .mini-stats { display: flex; gap: 18px; flex-wrap: wrap; }
+.hero .art .mini-stats { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; }
 .hero .art .mini-stats div { font-size: 14px; color: var(--muted); }
 .hero .art .mini-stats b { display: block; font-family: var(--serif); font-size: 28px; color: var(--primary); line-height: 1.1; }
 .hero .art .founded { font-size: 14px; color: var(--accent); font-weight: 600; }
@@ -63,7 +63,7 @@ section.alt { background: var(--surface); border-top: 1px solid var(--line); bor
 .word p { font-family: var(--serif); font-size: 23px; line-height: 1.75; margin: 12px 0; }
 
 .stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
-.stat { padding: 20px 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.stat { padding: 20px 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); text-align: center; }
 .stat.soft { background: var(--ground); }
 .stat .n { font-family: var(--serif); font-size: 42px; font-weight: 700; color: var(--primary); line-height: 1.1; }
 .stat.soft .n { color: var(--accent); }
@@ -87,12 +87,14 @@ section.alt { background: var(--surface); border-top: 1px solid var(--line); bor
 .card .h { font-size: 20px; font-weight: 600; }
 .card .p { font-size: 15px; color: var(--muted); margin: 6px 0 8px; }
 .card .go { font-size: 14px; font-weight: 600; color: var(--accent); }
+.card.soon { opacity: 0.85; }
+.card.soon .go { color: var(--muted); }
 
 .acts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .act { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); display: flex; flex-direction: column; }
 .act .cover { height: 170px; background: var(--primary-soft); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 14px; }
 .act .cover img { width: 100%; height: 100%; object-fit: cover; }
-.act .body { padding: 16px 18px; }
+.act .body { padding: 16px 18px; text-align: center; }
 .act .date { font-size: 13px; color: var(--accent); font-weight: 600; }
 .act .title { font-size: 17px; font-weight: 600; margin: 4px 0; }
 

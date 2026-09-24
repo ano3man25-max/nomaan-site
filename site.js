@@ -6,6 +6,13 @@
   function showSec(id, on) { var e = $(id); if (!e) return; var s = e.closest ? (e.closest('section') || e) : e; s.classList.toggle('hide', !on); }
   function text(id, v) { var e = $(id); if (e) e.textContent = v || ''; }
   function link(id, href) { var e = $(id); if (!e) return; if (href) { e.setAttribute('href', href); e.classList.remove('hide'); } else e.classList.add('hide'); }
+  // بطاقة بوابة لا تُخفى: بلا رابط تبقى ظاهرة بعبارة «الرابط قريبًا»
+  function portalCard(id, href) {
+    var e = $(id); if (!e) return;
+    var go = e.querySelector('.go');
+    if (href) { e.setAttribute('href', href); e.classList.remove('soon'); }
+    else { e.setAttribute('href', '#portal'); e.removeAttribute('target'); e.classList.add('soon'); if (go) go.textContent = 'الرابط قريبًا'; }
+  }
   function isUrl(u) { return /^https?:\/\//i.test(String(u || '')); }
   function initials(n) { var p = String(n || '').trim().split(/\s+/); return (p[0] || '').charAt(0) + (p[1] ? p[1].charAt(0) : ''); }
 
@@ -36,7 +43,7 @@
     document.querySelectorAll('[data-name]').forEach(function (e) { e.textContent = d.shortName || d.name || 'مجمع حلقات النعمان'; });
     document.querySelectorAll('[data-assoc]').forEach(function (e) { e.textContent = d.association ? 'تابع لـ' + d.association : ''; });
     var L = d.links || {}, c = d.contact || {};
-    link('lnkParents', L.parents); link('lnkStaff', L.staff); link('lnkRegister', L.register); link('lnkSuggest', L.suggest);
+    portalCard('lnkParents', L.parents); portalCard('lnkStaff', L.staff); link('lnkRegister', L.register); link('lnkSuggest', L.suggest);
     link('heroRegister', L.register); link('heroParents', L.parents);
     link('ctaPortal', '#portal');
     text('fAddress', c.address); text('fPhone', c.phone); text('fEmail', c.email);
