@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سجل المجمع — مجمع حلقات النعمان بن بشير</title>
+<link rel="icon" type="image/png" href="assets/logo-teal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/config.js"></script>
+</head>
+<body data-page="record">
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img class="assoc" src="assets/logo-association.png" alt="الجمعية الخيرية لتحفيظ القرآن الكريم بمحافظة الرس">
+      <img class="cplx" src="assets/logo-teal.png" alt="مجمع حلقات النعمان بن بشير">
+      <span><span class="name" data-name>مجمع حلقات النعمان</span><br><span class="sub" data-assoc></span></span>
+    </a>
+    <nav class="main">
+      <a href="index.html">الرئيسية</a>
+      <a href="index.html#stats">الإحصاءات</a>
+      <a href="index.html#activities">الأنشطة</a>
+      <a href="index.html#news">الأخبار</a>
+      <a class="on" href="record.html">سجل المجمع</a>
+      <a href="index.html#contact">تواصل معنا</a>
+    </nav>
+    <a class="btn fill cta" href="index.html#portal">بوابة الدخول</a>
+    <button class="menu-btn" type="button" aria-label="القائمة"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F2A28" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<div class="band">
+  <div class="wrap">
+    <h1>سجل المجمع</h1>
+    <p>من أتمّوا حفظ كتاب الله في حلقات المجمع منذ تأسيسه <span id="foundedYear"></span>، ومن علّموا وأداروا وأشرفوا — وفاءً وشكرًا.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap two">
+    <div>
+      <div class="sec-head"><h2>خريجو المجمع</h2><span class="mut" id="gradCount"></span></div>
+      <label class="mut" for="gradSearch">ابحث باسم الخريج أو سنة الختم</label>
+      <input class="search" id="gradSearch" type="search" placeholder="اسم أو سنة…">
+      <div class="tbl">
+        <div class="row head"><div>الاسم</div><div>سنة الختم</div><div>الحلقة</div><div class="tch">المعلم</div></div>
+        <div id="grads"></div>
+      </div>
+      <p class="mut">تُنشر الأسماء بإذن أولياء الأمور.</p>
+    </div>
+    <div>
+      <div class="sec-head"><h2>المعلمون والإداريون</h2><span class="mut" id="staffCount"></span></div>
+      <div class="chips">
+        <button class="chip on" type="button" data-sec="الحاليون">الحاليون</button>
+        <button class="chip" type="button" data-sec="السابقون">السابقون</button>
+        <button class="chip" type="button" data-sec="الإدارة والإشراف">الإدارة والإشراف</button>
+      </div>
+      <div class="people" id="people"></div>
+    </div>
+  </div>
+</section>
+
+<div class="status" id="status">جارٍ تحميل البيانات…</div>
+
+<footer class="foot" id="contact">
+  <div class="wrap">
+    <div>
+      <div class="logos"><img class="assoc" src="assets/logo-association.png" alt=""><img src="assets/logo-white.png" alt=""></div>
+      <div class="name" data-name>مجمع حلقات النعمان</div>
+      <div class="tiny" data-copyright></div>
+    </div>
+    <div id="fContact" class="hide">
+      <div class="head">تواصل معنا</div>
+      <div id="fAddress"></div>
+      <div id="fPhone" dir="ltr" style="text-align:right"></div>
+      <div id="fEmail" dir="ltr" style="text-align:right"></div>
+    </div>
+    <div>
+      <div class="head">روابط</div>
+      <a href="index.html">الرئيسية</a>
+      <a id="lnkRegister" class="hide" href="#" target="_blank" rel="noopener">طلب تسجيل طالب</a>
+      <a id="lnkSuggest" class="hide" href="#" target="_blank" rel="noopener">اقتراح أو ملاحظة</a>
+      <a href="index.html#portal">بوابة الدخول</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
