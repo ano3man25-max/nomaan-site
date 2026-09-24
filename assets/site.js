@@ -14,6 +14,13 @@
     else { e.setAttribute('href', '#portal'); e.removeAttribute('target'); e.classList.add('soon'); if (go) go.textContent = 'الرابط قريبًا'; }
   }
   function isUrl(u) { return /^https?:\/\//i.test(String(u || '')); }
+  // رابط صورة: يقبل رابط Drive العادي ويحوّله إلى رابط عرض مباشر، أو مسارًا نسبيًا داخل الموقع مثل assets/photos/x.jpg
+  function imgUrl(u) {
+    u = String(u || '').trim(); if (!u) return '';
+    var m = u.match(/drive\.google\.com\/file\/d\/([\w-]+)/) || u.match(/[?&]id=([\w-]+)/);
+    if (m && /drive\.google\.com/.test(u)) return 'https://drive.google.com/uc?export=view&id=' + m[1];
+    return u;
+  }
   function initials(n) { var p = String(n || '').trim().split(/\s+/); return (p[0] || '').charAt(0) + (p[1] ? p[1].charAt(0) : ''); }
 
   // القائمة على الجوال
@@ -41,7 +48,9 @@
 
   function common(d) {
     document.querySelectorAll('[data-name]').forEach(function (e) { e.textContent = d.shortName || d.name || 'مجمع حلقات النعمان'; });
-    document.querySelectorAll('[data-assoc]').forEach(function (e) { e.textContent = d.association ? 'تابع لـ' + d.association : ''; });
+    var assoc = String(d.association || '').trim();
+    var assocLine = assoc ? (assoc.indexOf('ال') === 0 ? 'تابع لل' + assoc.slice(2) : 'تابع لـ' + assoc) : '';
+    document.querySelectorAll('[data-assoc]').forEach(function (e) { e.textContent = assocLine; });
     var L = d.links || {}, c = d.contact || {};
     portalCard('lnkParents', L.parents); portalCard('lnkStaff', L.staff); link('lnkRegister', L.register); link('lnkSuggest', L.suggest);
     link('heroRegister', L.register); link('heroParents', L.parents);
@@ -71,7 +80,9 @@
     text('tagline', d.tagline || '');
     show('tagline', !!d.tagline);
     var sup = d.supervisor || {};
-    text('supWord', sup.word); text('supName', sup.name ? 'مشرف المجمع — ' + sup.name : 'مشرف المجمع');
+    text('supWord', sup.word); text('supName', sup.name || '');
+    if (d.headline) text('headline', d.headline);
+    var sp = $('supPhoto'), spu = imgUrl(sup.photo); if (sp && spu) { sp.src = spu; sp.style.objectFit = 'cover'; sp.style.padding = '0'; sp.alt = sup.name || ''; }
     showSec('secWord', !!sup.word);
 
     var S = d.stats || {};
@@ -129,7 +140,8 @@
       var rows = P.filter(function (p) { return (p.section || 'السابقون') === cur; });
       $('people').innerHTML = rows.length ? rows.map(function (p) {
         var yrs = p.from || p.to ? (p.from ? p.from + 'هـ' : '') + (p.to ? ' — ' + p.to : '') : '';
-        return '<div class="person"><div class="av">' + esc(initials(p.name)) + '</div><div><div class="nm">' + esc(p.name) + '</div><div class="rl">' + esc(p.role) + (p.ring ? ' — ' + esc(p.ring) : '') + '</div>' + (yrs ? '<div class="yr">' + esc(yrs) + '</div>' : '') + '</div></div>';
+        var pu = imgUrl(p.photo), av = pu ? '<div class="av"><img src="' + esc(pu) + '" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>' : '<div class="av">' + esc(initials(p.name)) + '</div>';
+        return '<div class="person">' + av + '<div><div class="nm">' + esc(p.name) + '</div><div class="rl">' + esc(p.role) + (p.ring ? ' — ' + esc(p.ring) : '') + '</div>' + (yrs ? '<div class="yr">' + esc(yrs) + '</div>' : '') + '</div></div>';
       }).join('') : '<div class="empty">لا أسماء في هذا القسم بعد.</div>';
       document.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('on', c.getAttribute('data-sec') === cur); });
     }
