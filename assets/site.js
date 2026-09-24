@@ -56,7 +56,7 @@
   }
 
   function common(d) {
-    document.querySelectorAll('[data-name]').forEach(function (e) { e.textContent = d.shortName || d.name || 'مجمع حلقات النعمان'; });
+    document.querySelectorAll('[data-name]').forEach(function (e) { e.textContent = d.name || d.shortName || 'مجمع حلقات النعمان بن بشير'; });
     var assoc = String(d.association || '').trim();
     var assocLine = assoc ? (assoc.indexOf('ال') === 0 ? 'تابع لل' + assoc.slice(2) : 'تابع لـ' + assoc) : '';
     document.querySelectorAll('[data-assoc]').forEach(function (e) { e.textContent = assocLine; });
@@ -67,7 +67,9 @@
     text('fAddress', c.address); text('fPhone', c.phone); text('fEmail', c.email);
     show('fContact', !!(c.address || c.phone || c.email));
     var y = (d.stats && d.stats['سنة التأسيس هـ']) || d.founded || '';
-    text('foundedYear', y ? y + 'هـ' : '');
+    text('foundedYear', y ? 'عام ' + y + 'هـ' : '');
+    var cr = d.credits || {};
+    text('creditDesign', cr.design || ''); text('creditSponsor', cr.sponsor || '');
     document.querySelectorAll('[data-copyright]').forEach(function (e) { e.textContent = '© ' + (new Date().getFullYear()) + ' — ' + (d.shortName || 'مجمع حلقات النعمان') + ' — جميع الحقوق محفوظة'; });
   }
 
@@ -135,19 +137,24 @@
     show('status', false);
   }
 
-  function record(d) {
+  function graduates(d) {
     common(d);
-    var G = d.graduates || [], P = d.staff || [];
+    var G = d.graduates || [];
     text('gradCount', G.length ? G.length + ' خريجًا' : '');
     function renderGrads(q) {
       var qq = (q || '').trim();
       var rows = G.filter(function (x) { return !qq || (x.name + ' ' + x.year).indexOf(qq) !== -1; });
       $('grads').innerHTML = rows.length ? rows.map(function (x) { return '<div class="row"><div class="nm">' + esc(x.name) + '</div><div>' + esc(x.year ? x.year + 'هـ' : '') + '</div><div class="mut">' + esc(x.ring) + '</div><div class="mut tch">' + esc(x.teacher) + '</div></div>'; }).join('')
-        : '<div class="empty">' + (G.length ? 'لا نتيجة لهذا البحث.' : 'تُنشر أسماء الخريجين هنا بإذن أولياء أمورهم.') + '</div>';
+        : '<div class="empty">' + (G.length ? 'لا نتيجة لهذا البحث.' : 'لا أسماء منشورة بعد.') + '</div>';
     }
     renderGrads('');
     var q = $('gradSearch'); if (q) q.addEventListener('input', function () { renderGrads(q.value); });
+    show('status', false);
+  }
 
+  function staff(d) {
+    common(d);
+    var P = d.staff || [];
     var sections = ['الحاليون', 'السابقون', 'الإدارة والإشراف'], cur = 'الحاليون';
     function renderStaff() {
       var rows = P.filter(function (p) { return (p.section || 'السابقون') === cur; });
@@ -165,9 +172,11 @@
     show('status', false);
   }
 
-  window.NOMAAN = { home: home, record: record, load: load };
+  function plain(d) { common(d); show('status', false); }
+  var PAGES = { home: home, graduates: graduates, staff: staff, nomaan: plain };
+  window.NOMAAN = { load: load };
   document.addEventListener('DOMContentLoaded', function () {
     var page = document.body.getAttribute('data-page');
-    load(function (d) { (page === 'record' ? record : home)(d); }, function (msg) { var s = $('status'); if (s) s.textContent = msg; });
+    load(function (d) { (PAGES[page] || home)(d); }, function (msg) { var s = $('status'); if (s) s.textContent = msg; });
   });
 })();

@@ -44,7 +44,9 @@ section.alt { background: var(--surface); border-top: 1px solid var(--line); bor
 .hero { background: var(--primary-soft); padding: 64px 0; }
 .hero .wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 48px; align-items: center; }
 .hero .bism { font-size: 14px; letter-spacing: 1px; color: var(--muted); }
-.hero h1 { font-size: 50px; line-height: 1.25; margin: 14px 0 18px; }
+.hero h1 { font-size: 50px; line-height: 1.25; margin: 0 0 12px; }
+.hero .hero-name { font-family: var(--serif); font-size: 26px; color: var(--ink); margin-bottom: 10px; }
+.hero a.bio { display: inline-block; margin-top: 8px; font-weight: 600; text-decoration: none; border-bottom: 1.5px solid var(--primary-light); }
 .hero p { font-size: 18px; margin: 0 0 22px; }
 .hero .actions { display: flex; gap: 14px; flex-wrap: wrap; }
 .hero .art { min-height: 300px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 12px; padding: 28px 30px; }
@@ -111,7 +113,7 @@ footer.foot .logos { display: flex; gap: 12px; align-items: center; margin-botto
 footer.foot .logos img { height: 52px; width: auto; }
 footer.foot .logos img.assoc { width: 52px; height: 52px; border-radius: 50%; background: #fff; object-fit: contain; }
 footer.foot .name { font-family: var(--serif); font-size: 22px; font-weight: 700; }
-footer.foot .tiny { font-size: 13px; color: var(--line); margin-top: 10px; }
+footer.foot .tiny { font-size: 13px; color: var(--line); margin-top: 8px; }
 footer.foot .head { font-weight: 600; margin-bottom: 8px; }
 
 /* صفحة السجل */
@@ -151,7 +153,8 @@ input.search { width: 100%; padding: 12px 14px; border: 1px solid var(--line); b
   section { padding: 32px 0; }
   .hero { padding: 36px 0; }
   .hero .wrap { grid-template-columns: 1fr; gap: 20px; }
-  .hero h1 { font-size: 32px; }
+  .hero h1 { font-size: 30px; }
+  .hero .hero-name { font-size: 20px; }
   .hero p { font-size: 15px; }
   .hero .actions .btn { flex: 1 1 100%; }
   .hero .art { min-height: 0; padding: 20px; }
@@ -170,3 +173,10 @@ input.search { width: 100%; padding: 12px 14px; border: 1px solid var(--line); b
   .tbl .row { grid-template-columns: 1.6fr 0.8fr 1fr; }
   .tbl .row .tch { display: none; }
 }
+
+/* صفحة السيرة */
+.bio-wrap { max-width: 800px; }
+.bio-wrap p { font-size: 17px; line-height: 1.9; margin: 0 0 16px; }
+.bio-wrap blockquote { margin: 18px 0; padding: 14px 20px; border-right: 4px solid var(--accent); background: var(--surface); border-radius: 0 12px 12px 0; font-family: var(--serif); font-size: 20px; line-height: 1.8; }
+.bio-wrap blockquote cite { display: block; font-family: var(--sans); font-style: normal; font-size: 13px; color: var(--muted); margin-top: 6px; }
+.bio-wrap h3 { color: var(--primary); font-size: 24px; margin: 26px 0 10px; }
