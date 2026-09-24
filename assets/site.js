@@ -18,8 +18,17 @@
   function imgUrl(u) {
     u = String(u || '').trim(); if (!u) return '';
     var m = u.match(/drive\.google\.com\/file\/d\/([\w-]+)/) || u.match(/[?&]id=([\w-]+)/);
-    if (m && /drive\.google\.com/.test(u)) return 'https://drive.google.com/uc?export=view&id=' + m[1];
+    if (m && /drive\.google\.com/.test(u)) return 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w1000';
     return u;
+  }
+  // احتياط لصور Drive: إن فشل رابط المصغّرة جُرِّب الرابط المباشر، ثم البديل المعطى
+  function imgFallback(img, u, alt) {
+    var m = String(u || '').match(/id=([\w-]+)/), tried = 0;
+    img.onerror = function () {
+      tried++;
+      if (tried === 1 && m) { img.src = 'https://lh3.googleusercontent.com/d/' + m[1]; return; }
+      img.onerror = null; if (alt) alt(img);
+    };
   }
   function initials(n) { var p = String(n || '').trim().split(/\s+/); return (p[0] || '').charAt(0) + (p[1] ? p[1].charAt(0) : ''); }
 
@@ -82,7 +91,11 @@
     var sup = d.supervisor || {};
     text('supWord', sup.word); text('supName', sup.name || '');
     if (d.headline) text('headline', d.headline);
-    var sp = $('supPhoto'), spu = imgUrl(sup.photo); if (sp && spu) { sp.src = spu; sp.style.objectFit = 'cover'; sp.style.padding = '0'; sp.alt = sup.name || ''; }
+    var sp = $('supPhoto'), spu = imgUrl(sup.photo);
+    if (sp && spu) {
+      imgFallback(sp, spu, function (im) { im.src = 'assets/logo-teal.png'; im.style.objectFit = 'contain'; im.style.padding = '18px'; im.alt = ''; });
+      sp.alt = ''; sp.style.objectFit = 'cover'; sp.style.padding = '0'; sp.src = spu;
+    }
     showSec('secWord', !!sup.word);
 
     var S = d.stats || {};
@@ -140,9 +153,10 @@
       var rows = P.filter(function (p) { return (p.section || 'السابقون') === cur; });
       $('people').innerHTML = rows.length ? rows.map(function (p) {
         var yrs = p.from || p.to ? (p.from ? p.from + 'هـ' : '') + (p.to ? ' — ' + p.to : '') : '';
-        var pu = imgUrl(p.photo), av = pu ? '<div class="av"><img src="' + esc(pu) + '" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>' : '<div class="av">' + esc(initials(p.name)) + '</div>';
+        var pu = imgUrl(p.photo), av = '<div class="av" style="position:relative;overflow:hidden"><span>' + esc(initials(p.name)) + '</span>' + (pu ? '<img src="' + esc(pu) + '" alt="" loading="lazy" data-photo="1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">' : '') + '</div>';
         return '<div class="person">' + av + '<div><div class="nm">' + esc(p.name) + '</div><div class="rl">' + esc(p.role) + (p.ring ? ' — ' + esc(p.ring) : '') + '</div>' + (yrs ? '<div class="yr">' + esc(yrs) + '</div>' : '') + '</div></div>';
       }).join('') : '<div class="empty">لا أسماء في هذا القسم بعد.</div>';
+      $('people').querySelectorAll('img[data-photo]').forEach(function (im) { imgFallback(im, im.getAttribute('src'), function (x) { x.remove(); }); });
       document.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('on', c.getAttribute('data-sec') === cur); });
     }
     document.querySelectorAll('.chip').forEach(function (c) { c.addEventListener('click', function () { cur = c.getAttribute('data-sec'); renderStaff(); }); });
