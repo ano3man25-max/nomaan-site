@@ -79,8 +79,17 @@
       return f.format(new Date()).replace(/\s*هـ$/, '') + 'هـ';
     } catch (e) { return ''; }
   }
+  // [1.17] تنسيق من الإعدادات: color/size/font
+  function applyStyle(id, st) {
+    var e = $(id); if (!e || !st) return;
+    var tokens = { primary: 'var(--primary)', accent: 'var(--accent)', ink: 'var(--ink)', muted: 'var(--muted)' };
+    if (st.color) e.style.color = tokens[st.color] || st.color;
+    if (st.size) e.style.fontSize = st.size + 'px';
+    if (st.font) e.style.fontFamily = st.font === 'serif' ? 'var(--serif)' : 'var(--sans)';
+  }
   function home(d) {
     common(d);
+    var ST = d.styles || {}; applyStyle('headline', ST.headline); applyStyle('tagline', ST.tagline); applyStyle('supWord', ST.word);
     // بطاقة الواجهة: الجمعية، تاريخ اليوم، أرقام مختصرة، سنة التأسيس
     var S0 = d.stats || {};
     text('heroToday', hijriToday());
