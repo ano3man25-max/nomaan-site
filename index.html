@@ -25,10 +25,9 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html">
+    <a class="brand" href="index.html" aria-label="الرئيسية">
       <img class="assoc" src="assets/logo-association.png" alt="الجمعية الخيرية لتحفيظ القرآن الكريم بمحافظة الرس">
       <img class="cplx" src="assets/logo-teal.png" alt="مجمع حلقات النعمان بن بشير">
-      <span class="name" data-name>مجمع حلقات النعمان</span>
     </a>
     <nav class="main">
       <a href="#about">عن المجمع</a>
@@ -36,7 +35,9 @@
       <a href="#journey">مسيرة المجمع</a>
       <a href="#activities">الأنشطة</a>
       <a href="#news">الأخبار</a>
-      <a href="record.html">سجل المجمع</a>
+      <a href="graduates.html">الخريجون</a>
+      <a href="staff.html">المعلمون والإداريون</a>
+      <a href="nomaan.html">سيرة النعمان بن بشير</a>
       <a href="#contact">تواصل معنا</a>
     </nav>
     <a class="btn fill cta" id="ctaPortal" href="#portal">بوابة الدخول</a>
@@ -47,8 +48,10 @@
 <section class="hero">
   <div class="wrap">
     <div>
-      <h1 id="headline">حلقاتٌ تُخرِّج حَفَظةً لكتاب الله</h1>
+      <h1 id="headline">خيركم من تعلّم القرآن وعلّمه</h1>
+      <div class="hero-name" data-name>مجمع حلقات النعمان بن بشير</div>
       <p id="tagline" class="hide"></p>
+      <a class="bio" href="nomaan.html">تعرّف على سيرة الصحابي النعمان بن بشير رضي الله عنه ←</a>
     </div>
     <div class="art" id="heroCard">
       <img src="assets/logo-teal.png" alt="" class="mini">
@@ -65,7 +68,7 @@
     <div class="word" id="secWord">
       <div class="photo"><img id="supPhoto" src="assets/logo-teal.png" alt="" style="object-fit: contain; padding: 18px;"></div>
       <div>
-        <div class="label">كلمة مشرف المجمع</div>
+        <div class="label">كلمة مدير المجمع</div>
         <p id="supWord"></p>
         <div class="mut" id="supName"></div>
       </div>
@@ -86,7 +89,7 @@
 
 <section id="journey" class="hide">
   <div class="wrap" id="secJourney">
-    <div class="sec-head"><h2>مسيرة المجمع</h2><a href="record.html">خريجو المجمع ومعلموه ←</a></div>
+    <div class="sec-head"><h2>مسيرة المجمع</h2><a href="graduates.html">خريجو المجمع ←</a></div>
     <div class="journey" id="journey"></div>
   </div>
 </section>
@@ -97,7 +100,7 @@
     <div class="portal-grid">
       <a class="card" id="lnkStaff" href="#" target="_blank" rel="noopener">
         <span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20v-1a4 4 0 0 1 4-4h3"/><circle cx="9" cy="8" r="3.5"/><path d="M14.5 17.5l1.8 1.8L20 15.5"/></svg></span>
-        <span><span class="h">منسوبو المجمع</span><br><span class="p">المعلم إلى تطبيق حلقته، والمختبِر إلى الجودة، والمشرف إلى صفحات الإدارية — برمز الدخول.</span><br><span class="go">الدخول برمزك ←</span></span>
+        <span><span class="h">منسوبو المجمع</span><br><span class="p">المعلم إلى تطبيق حلقته، والمختبِر إلى الجودة، ومشرفو الخطط والإدارية إلى صفحاتهم — برمز واحد.</span><br><span class="go">الدخول برمزك ←</span></span>
       </a>
       <a class="card" id="lnkParents" href="#" target="_blank" rel="noopener">
         <span class="ic gold"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span>
@@ -127,9 +130,11 @@
   <div class="wrap">
     <div>
       <div class="logos"><img class="assoc" src="assets/logo-association.png" alt=""><img src="assets/logo-white.png" alt=""></div>
-      <div class="name" data-name>مجمع حلقات النعمان</div>
+      <div class="name">مجمع حلقات النعمان بن بشير رضي الله عنه</div>
       <div class="mut" style="color:#E6EBEA" data-assoc></div>
       <div class="tiny" data-copyright></div>
+      <div class="tiny" id="creditDesign"></div>
+      <div class="tiny" id="creditSponsor"></div>
     </div>
     <div id="fContact" class="hide">
       <div class="head">تواصل معنا</div>
@@ -139,14 +144,17 @@
     </div>
     <div>
       <div class="head">روابط</div>
+      <a href="index.html">الرئيسية</a>
       <a id="lnkRegister" class="hide" href="#" target="_blank" rel="noopener">طلب تسجيل طالب</a>
       <a id="lnkSuggest" class="hide" href="#" target="_blank" rel="noopener">اقتراح أو ملاحظة</a>
-      <a href="record.html">سجل المجمع</a>
-      <a href="#portal">بوابة الدخول</a>
+      <a href="graduates.html">الخريجون</a>
+      <a href="staff.html">المعلمون والإداريون</a>
+      <a href="nomaan.html">سيرة النعمان بن بشير</a>
+      <a href="index.html#portal">بوابة الدخول</a>
     </div>
   </div>
 </footer>
 
-<script src="assets/site.js?v=7"></script>
+<script src="assets/site.js?v=8"></script>
 </body>
 </html>
