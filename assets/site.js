@@ -97,8 +97,12 @@
     var hs = $('heroStats'); if (hs) hs.innerHTML = mini.map(function (x) { return '<div><b>' + esc(S0[x[0]]) + '</b>' + esc(x[1]) + '</div>'; }).join('');
     var fy = S0['سنة التأسيس هـ'] || d.founded || '';
     text('heroFounded', fy ? 'في خدمة كتاب الله منذ عام ' + fy + 'هـ' : '');
-    text('tagline', d.tagline || '');
-    show('tagline', !!d.tagline);
+    // [1.10] العبارة التعريفية: كل سطر جديد يصير <br>
+    var tg = $('tagline');
+    if (tg) {
+      if (d.tagline) { tg.innerHTML = esc(d.tagline).replace(/\r?\n/g, '<br>'); tg.classList.remove('hide'); }
+      else tg.classList.add('hide');
+    }
     var sup = d.supervisor || {};
     text('supWord', sup.word); text('supName', sup.name || '');
     if (d.headline) text('headline', d.headline);
