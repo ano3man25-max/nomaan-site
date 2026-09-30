@@ -70,7 +70,8 @@
     text('foundedYear', y ? 'عام ' + y + 'هـ' : '');
     var cr = d.credits || {};
     text('creditDesign', cr.design || ''); text('creditSponsor', cr.sponsor || '');
-    document.querySelectorAll('[data-copyright]').forEach(function (e) { e.textContent = '© ' + (new Date().getFullYear()) + ' — ' + (d.shortName || 'مجمع حلقات النعمان') + ' — جميع الحقوق محفوظة'; });
+    var hy = ''; try { hy = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura-nu-latn', { year: 'numeric' }).format(new Date()).replace(/[^0-9]/g, ''); } catch (eY) {}
+    document.querySelectorAll('[data-copyright]').forEach(function (e) { e.textContent = '© ' + (hy ? hy + 'هـ' : new Date().getFullYear() + 'م') + ' — جميع الحقوق محفوظة'; });
   }
 
   function hijriToday() {
