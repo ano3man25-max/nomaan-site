@@ -16,7 +16,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 700; margin: 0; color: var(
 h2 { font-size: 30px; }
 h3 { font-size: 22px; color: var(--accent); }
 .mut { color: var(--muted); font-size: 14px; }
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 12px 22px; border-radius: 10px; font-weight: 600; text-decoration: none; border: 1.5px solid transparent; font-size: 15px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 12px 22px; border-radius: 10px; font-weight: 600; text-decoration: none; border: 1.5px solid transparent; font-size: 15px; white-space: nowrap; }
 .btn.fill { background: var(--primary); color: #fff; }
 .btn.fill:hover { background: var(--primary-deep); color: #fff; }
 .btn.line { border-color: var(--primary); color: var(--primary); background: transparent; }
@@ -25,13 +25,14 @@ h3 { font-size: 22px; color: var(--accent); }
 
 /* الرأس */
 header.top { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
-header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 32px; min-height: 84px; }
-.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 84px; }
+header.top .cta { flex: 0 0 auto; padding: 12px 20px; font-size: 14px; }
+.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); flex: 0 0 auto; }
 .brand img.assoc { width: 56px; height: 56px; object-fit: contain; border-radius: 50%; background: #fff; }
 .brand img.cplx { height: 56px; width: auto; }
 .brand .name { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--primary); line-height: 1.2; white-space: nowrap; }
 .brand .sub { font-size: 12px; color: var(--muted); }
-nav.main { display: flex; align-items: center; gap: 26px; font-size: 15px; font-weight: 500; }
+nav.main { display: flex; align-items: center; gap: 20px; font-size: 15px; font-weight: 500; margin-inline-start: 28px; flex: 1 1 auto; justify-content: center; }
 nav.main a { color: var(--ink); text-decoration: none; white-space: nowrap; }
 nav.main a.on { color: var(--primary); border-bottom: 2px solid var(--primary); }
 .menu-btn { display: none; width: 44px; height: 44px; border: 1px solid var(--line); background: #fff; border-radius: 10px; cursor: pointer; align-items: center; justify-content: center; }
@@ -139,6 +140,10 @@ input.search { width: 100%; padding: 12px 14px; border: 1px solid var(--line); b
 .empty { color: var(--muted); font-size: 15px; padding: 14px 0; }
 .status { text-align: center; color: var(--muted); font-size: 14px; padding: 10px; }
 
+@media (max-width: 1150px) {
+  nav.main { gap: 14px; font-size: 14px; margin-inline-start: 20px; }
+  header.top .cta { padding: 11px 14px; font-size: 13px; }
+}
 @media (max-width: 900px) {
   header.top .wrap { min-height: 64px; }
   .brand { gap: 8px; }
@@ -146,7 +151,7 @@ input.search { width: 100%; padding: 12px 14px; border: 1px solid var(--line); b
   .brand img.cplx { height: 40px; }
   .brand .name { font-size: 16px; }
   .brand .sub { display: none; }
-  nav.main { display: none; position: absolute; top: 64px; right: 0; left: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; padding: 12px 20px; gap: 14px; }
+  nav.main { display: none; position: absolute; top: 64px; right: 0; left: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; padding: 12px 20px; gap: 14px; margin-inline-start: 0; }
   nav.main.open { display: flex; }
   .menu-btn { display: flex; }
   /* header.top .cta stays visible on mobile */
