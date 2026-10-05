@@ -18,7 +18,7 @@
 <link rel="icon" type="image/png" href="assets/logo-teal.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=11">
+<link rel="stylesheet" href="assets/site.css?v=12">
 <script src="assets/config.js?v=3"></script>
 </head>
 <body data-page="home">
@@ -38,8 +38,10 @@
       <a href="graduates.html">الخريجون</a>
       <a href="staff.html">المعلمون والإداريون</a>
       <a href="nomaan.html">سيرة النعمان بن بشير</a>
+      <a href="#register" id="navRegister" class="hide">التسجيل</a>
       <a href="#contact">تواصل معنا</a>
     </nav>
+    <a class="btn gold cta hide" id="ctaRegister" href="#" target="_blank" rel="noopener">تسجيل طالب جديد</a>
     <a class="btn fill cta" id="ctaPortal" href="#portal">بوابة الدخول</a>
     <button class="menu-btn" type="button" aria-label="القائمة"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F2A28" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
@@ -90,6 +92,24 @@
   <div class="wrap" id="secJourney">
     <div class="sec-head"><h2>مسيرة المجمع</h2><a href="graduates.html">خريجو المجمع ←</a></div>
     <div class="journey" id="journey"></div>
+  </div>
+</section>
+
+<!-- [موقع-12] قسم التسجيل: شروطه من الإعدادات، وزرُّه يفتح الصفحة في تبويب جديد لا في إطار
+     — فالنموذج طويل والإطار يسجنه. -->
+<section id="register" class="alt hide">
+  <div class="wrap">
+    <div class="sec-head"><h2>التسجيل في المجمع</h2></div>
+    <div class="reg-box">
+      <div class="reg-txt">
+        <p id="regIntro">يسعدنا انضمام أبنائكم إلى حلقات المجمع. اقرأ الشروط ثم ابدأ طلب التسجيل، وسيصلك الرد بعد مراجعة الإدارة.</p>
+        <ul id="regConds" class="reg-conds"></ul>
+      </div>
+      <div class="reg-act">
+        <a class="btn gold big" id="btnRegister" href="#" target="_blank" rel="noopener">ابدأ طلب التسجيل</a>
+        <a class="reg-edit" id="btnRegEdit" href="#" target="_blank" rel="noopener">لديك طلب سابق؟ عدّله أو أكمله</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -154,6 +174,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=11"></script>
+<script src="assets/site.js?v=12"></script>
 </body>
 </html>
