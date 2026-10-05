@@ -205,11 +205,7 @@ function registerSection(url, conds) {
   var sec = document.getElementById('register');
   var has = !!String(url || '').trim();
   if (sec) sec.classList.toggle('hide', !has);
-  var nav = document.getElementById('navRegister');
-  if (nav) nav.classList.toggle('hide', !has);
-  var cta = document.getElementById('ctaRegister');
-  if (cta) { cta.classList.toggle('hide', !has); if (has) cta.href = url; }
-  if (!has) return;
+  if (!has) return;   // [موقع-13] لا زر في الترويسة — القسم وذيل الصفحة يكفيان
   var b = document.getElementById('btnRegister');
   if (b) b.href = url;
   var e = document.getElementById('btnRegEdit');

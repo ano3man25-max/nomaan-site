@@ -187,7 +187,8 @@ input.search { width: 100%; padding: 12px 14px; border: 1px solid var(--line); b
 .bio-wrap h3 { color: var(--primary); font-size: 24px; margin: 26px 0 10px; }
 
 
-/* [موقع-12] قسم التسجيل */
+/* [موقع-12] قسم التسجيل — و[موقع-13] خلفية خاصة تميّزه عن الإحصاءات قبله */
+.regsec { background: linear-gradient(180deg, #f2f7f6 0%, #eaf1ef 100%); padding: 56px 0; }
 .btn.gold { background: var(--gold, #8a6d1f); color: #fff; border-color: transparent; }
 .btn.gold:hover { filter: brightness(1.08); }
 .btn.big { font-size: 1.05rem; padding: 14px 28px; }
