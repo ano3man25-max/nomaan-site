@@ -63,6 +63,7 @@
     var L = d.links || {}, c = d.contact || {};
     portalCard('lnkParents', L.parents); portalCard('lnkStaff', L.staff); link('lnkRegister', L.register); link('lnkSuggest', L.suggest);
     link('heroRegister', L.register); link('heroParents', L.parents);
+    registerSection(L.register, d.conditions);   // [موقع-12]
     link('ctaPortal', '#portal');
     text('fAddress', c.address); text('fPhone', c.phone); text('fEmail', c.email);
     show('fContact', !!(c.address || c.phone || c.email));
@@ -194,3 +195,32 @@
     load(function (d) { (PAGES[page] || home)(d); }, function (msg) { var s = $('status'); if (s) s.textContent = msg; });
   });
 })();
+
+
+/**
+ * [موقع-12] قسم التسجيل: لا يظهر إلا إذا كان الرابط مكتوبًا في إعدادات الموقع،
+ * فلا يُعرض زرٌّ لا يفتح شيئًا. وتبويب التعديل يُفتح بإضافة ‎#edit‎ إلى الرابط نفسه.
+ */
+function registerSection(url, conds) {
+  var sec = document.getElementById('register');
+  var has = !!String(url || '').trim();
+  if (sec) sec.classList.toggle('hide', !has);
+  var nav = document.getElementById('navRegister');
+  if (nav) nav.classList.toggle('hide', !has);
+  var cta = document.getElementById('ctaRegister');
+  if (cta) { cta.classList.toggle('hide', !has); if (has) cta.href = url; }
+  if (!has) return;
+  var b = document.getElementById('btnRegister');
+  if (b) b.href = url;
+  var e = document.getElementById('btnRegEdit');
+  if (e) e.href = url + (url.indexOf('#') === -1 ? '#edit' : '');
+  var ul = document.getElementById('regConds');
+  if (ul) {
+    ul.innerHTML = '';
+    (conds || []).forEach(function (t) {
+      var li = document.createElement('li');
+      li.textContent = t;
+      ul.appendChild(li);
+    });
+  }
+}

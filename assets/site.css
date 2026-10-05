@@ -185,3 +185,19 @@ input.search { width: 100%; padding: 12px 14px; border: 1px solid var(--line); b
 .bio-wrap blockquote { margin: 18px 0; padding: 14px 20px; border-right: 4px solid var(--accent); background: var(--surface); border-radius: 0 12px 12px 0; font-family: var(--serif); font-size: 20px; line-height: 1.8; }
 .bio-wrap blockquote cite { display: block; font-family: var(--sans); font-style: normal; font-size: 13px; color: var(--muted); margin-top: 6px; }
 .bio-wrap h3 { color: var(--primary); font-size: 24px; margin: 26px 0 10px; }
+
+
+/* [موقع-12] قسم التسجيل */
+.btn.gold { background: var(--gold, #8a6d1f); color: #fff; border-color: transparent; }
+.btn.gold:hover { filter: brightness(1.08); }
+.btn.big { font-size: 1.05rem; padding: 14px 28px; }
+.reg-box { display: flex; gap: 28px; align-items: center; flex-wrap: wrap;
+  background: #fff; border: 1px solid var(--line, #d8dedc); border-radius: 16px; padding: 24px 26px; }
+.reg-txt { flex: 1 1 320px; }
+.reg-txt p { margin: 0 0 12px; color: var(--muted, #5b6b68); }
+.reg-conds { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.reg-conds li { position: relative; padding-inline-start: 22px; }
+.reg-conds li::before { content: "✓"; position: absolute; inset-inline-start: 0; color: var(--teal, #6b8784); font-weight: 700; }
+.reg-act { flex: 0 0 auto; display: grid; gap: 10px; justify-items: center; }
+.reg-edit { font-size: .92rem; color: var(--muted, #5b6b68); text-decoration: underline; }
+@media (max-width: 720px) { .reg-act { width: 100%; } .reg-act .btn { width: 100%; text-align: center; } }
